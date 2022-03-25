@@ -9,12 +9,16 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.lifeSavers.emergencyappsignup.databinding.ActivitySignUpBinding
 import java.util.*
 
 class SignUpActivity : AppCompatActivity() {
     // ViewBinding
     private lateinit var binding: ActivitySignUpBinding
+
+    private lateinit var database: DatabaseReference
 
     // ActionBar
     private lateinit var actionBar: ActionBar
@@ -31,6 +35,12 @@ class SignUpActivity : AppCompatActivity() {
     private var birthDate = ""
     private var password = ""
     private var confirmedPassword = ""
+
+    val name1 = name
+    val email1 = email
+    val phoneNumber1 = phoneNumber
+    val birthDate1 = birthDate
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +79,8 @@ class SignUpActivity : AppCompatActivity() {
         password = binding.passwordEt.text.toString().trim()
         confirmedPassword = binding.confirmedPasswordEt.text.toString().trim()
 
+
+
         val calendar = Calendar.getInstance()
         val currentYear = calendar[Calendar.YEAR]
 
@@ -76,35 +88,28 @@ class SignUpActivity : AppCompatActivity() {
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             // invalid email format
             binding.emailEt.error = "Invalid email format"
-        }
-        else if (TextUtils.isEmpty(password)) {
+        } else if (TextUtils.isEmpty(password)) {
             // password isn't entered
             binding.passwordEt.error = "Please enter password"
-        }
-        else if (password.length < 6) {
+        } else if (password.length < 6) {
             // password length is less than 6
             binding.passwordEt.error = "Password must contain at least 6 characters"
-        }
-        else if (!password.equals(confirmedPassword)) {
+        } else if (!password.equals(confirmedPassword)) {
             binding.passwordEt.error = "Password and Confirmed Password must match"
             binding.confirmedPasswordEt.error = "Password and Confirmed Password must match"
-        }
-        else if (name.equals("")) {
+        } else if (name.equals("")) {
             binding.nameEt.error = "Please enter name"
-        }
-        else if (name.length < 3) {
+        } else if (name.length < 3) {
             binding.nameEt.error = "Name must contain at least 3 letters"
-        }
-        else if (!Patterns.PHONE.matcher(phoneNumber).matches()) {
+        } else if (!Patterns.PHONE.matcher(phoneNumber).matches()) {
             binding.phoneNumberEt.error = "Invalid phone format"
-        }
-        else if (birthDate.length != 4 || birthDate >= currentYear.toString()) {
+        } else if (birthDate.length != 4 || birthDate >= currentYear.toString()) {
             binding.birthDateEt.error = "Invalid year"
-        }
-        else {
+        } else {
             // data is valid, continue signUp
             firebaseSignUp()
         }
+
     }
 
     private fun firebaseSignUp() {
@@ -118,18 +123,41 @@ class SignUpActivity : AppCompatActivity() {
                 progressDialog.dismiss()
                 // get current user
                 val firebaseUser = firebaseAuth.currentUser
+
+                val name1 = name
+                val email1 = email
+                val phoneNumber1 = phoneNumber
+                val birthDate1 = birthDate
+
                 val email = firebaseUser!!.email
+
+                database = FirebaseDatabase.getInstance().getReference("Users")
+
+
+                val User = User(name1, email1, phoneNumber1, birthDate1)
+                database.child(name1).setValue(User).addOnSuccessListener {
+                    binding.nameEt.text.clear()
+                    binding.emailEt.text.clear()
+                    binding.phoneNumberEt.text.clear()
+                    binding.birthDateEt.text.clear()
+                    //Toast.makeText(this, "Successfully saved", Toast.LENGTH_SHORT).show()
+                }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+                    }
+
                 Toast.makeText(this, "Account created with email $email", Toast.LENGTH_SHORT).show()
 
                 // open profile
                 startActivity(Intent(this, PermissionsActivity::class.java))
                 finish()
             }
-            .addOnFailureListener { e->
+            .addOnFailureListener { e ->
                 // signUp failed
                 progressDialog.dismiss()
                 Toast.makeText(this, "SignUp Failed due to ${e.message}", Toast.LENGTH_SHORT).show()
             }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
