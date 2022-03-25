@@ -1,11 +1,14 @@
 package com.lifeSavers.emergencyappsignup
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
@@ -52,11 +55,39 @@ class LogInActivity : AppCompatActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
+        // handle click, open ForgotPasswordActivity
+        binding.forgotPasswordTv.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Reset Password")
+            val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
+            val email = view.findViewById<EditText>(R.id.emailEt)
+            builder.setView(view)
+            builder.setPositiveButton("Reset", DialogInterface.OnClickListener { _, _ ->
+                forgotPassword(email)
+            })
+            builder.setNegativeButton("close", DialogInterface.OnClickListener { _, _ ->  })
+            builder.show()
+        }
+
         // handle click, begin login
         binding.loginBtn.setOnClickListener {
             // before logging in, validate data
             validateData()
         }
+    }
+
+    private fun forgotPassword(email: EditText) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()) {
+            // invalid email format
+            return
+        }
+
+        firebaseAuth.sendPasswordResetEmail(email.text.toString())
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Email sent.", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     private fun validateData() {
@@ -88,11 +119,18 @@ class LogInActivity : AppCompatActivity() {
                 // get user info
                 val firebaseUser = firebaseAuth.currentUser
                 val email = firebaseUser!!.email
-                Toast.makeText(this, "LoggedIn as $email", Toast.LENGTH_SHORT).show()
 
-                // open profile
-                startActivity(Intent(this, PermissionsActivity::class.java))
-                finish()
+                if (firebaseUser.isEmailVerified) {
+                    Toast.makeText(this, "LoggedIn as $email", Toast.LENGTH_SHORT).show()
+
+                    // open profile
+                    startActivity(Intent(this, PermissionsActivity::class.java))
+                    finish()
+                }
+                else {
+                    Toast.makeText(this, "Please verify your email address.", Toast.LENGTH_SHORT).show()
+                }
+
             }
             .addOnFailureListener { e ->
                 // login failed

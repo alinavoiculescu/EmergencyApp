@@ -123,34 +123,41 @@ class SignUpActivity : AppCompatActivity() {
                 progressDialog.dismiss()
                 // get current user
                 val firebaseUser = firebaseAuth.currentUser
+                val sendEmailVerification = firebaseUser!!.sendEmailVerification()
+                    .addOnSuccessListener {
+                        val name1 = name
+                        val email1 = email
+                        val phoneNumber1 = phoneNumber
+                        val birthDate1 = birthDate
 
-                val name1 = name
-                val email1 = email
-                val phoneNumber1 = phoneNumber
-                val birthDate1 = birthDate
+                        val email = firebaseUser!!.email
 
-                val email = firebaseUser!!.email
-
-                database = FirebaseDatabase.getInstance().getReference("Users")
+                        database = FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users")
 
 
-                val User = User(name1, email1, phoneNumber1, birthDate1)
-                database.child(name1).setValue(User).addOnSuccessListener {
-                    binding.nameEt.text.clear()
-                    binding.emailEt.text.clear()
-                    binding.phoneNumberEt.text.clear()
-                    binding.birthDateEt.text.clear()
-                    //Toast.makeText(this, "Successfully saved", Toast.LENGTH_SHORT).show()
-                }
-                    .addOnFailureListener {
-                        Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+                        val user = User(name1, email1, phoneNumber1, birthDate1)
+                        database.child(firebaseUser.uid).setValue(user)
+                            .addOnSuccessListener {
+                                binding.nameEt.text.clear()
+                                binding.emailEt.text.clear()
+                                binding.phoneNumberEt.text.clear()
+                                binding.birthDateEt.text.clear()
+
+                                Toast.makeText(this, "Account created. Please check your email for verification.", Toast.LENGTH_SHORT).show()
+
+                                firebaseAuth.signOut()
+
+                                // go to login page
+                                startActivity(Intent(this, LogInActivity::class.java))
+                                finish()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+                            }
                     }
-
-                Toast.makeText(this, "Account created with email $email", Toast.LENGTH_SHORT).show()
-
-                // open profile
-                startActivity(Intent(this, PermissionsActivity::class.java))
-                finish()
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Account not created due to ${e.message}.", Toast.LENGTH_SHORT).show()
+                    }
             }
             .addOnFailureListener { e ->
                 // signUp failed
