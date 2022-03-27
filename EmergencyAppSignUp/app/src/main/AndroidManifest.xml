@@ -14,6 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_ls_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EmergencyAppSignUp">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDkmsjZUMpcNvsHL4Fa04G8MvMWaWzvfFw" />
+
         <activity
             android:name=".MapActivity"
             android:exported="false"
