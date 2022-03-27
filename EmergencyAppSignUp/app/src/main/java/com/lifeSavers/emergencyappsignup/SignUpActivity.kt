@@ -36,12 +36,6 @@ class SignUpActivity : AppCompatActivity() {
     private var password = ""
     private var confirmedPassword = ""
 
-    val name1 = name
-    val email1 = email
-    val phoneNumber1 = phoneNumber
-    val birthDate1 = birthDate
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -134,9 +128,8 @@ class SignUpActivity : AppCompatActivity() {
 
                         database = FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users")
 
-
-                        val user = User(name1, email1, phoneNumber1, birthDate1)
-                        database.child(firebaseUser.uid).setValue(user)
+                        val user = User(name1, email1, phoneNumber1, birthDate1, "0")
+                        database.child(firebaseUser.uid).setValue(user) // adds on Database a new registred user
                             .addOnSuccessListener {
                                 binding.nameEt.text.clear()
                                 binding.emailEt.text.clear()

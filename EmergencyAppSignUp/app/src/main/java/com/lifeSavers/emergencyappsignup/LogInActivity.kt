@@ -2,16 +2,23 @@ package com.lifeSavers.emergencyappsignup
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.ContentValues.TAG
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.core.SnapshotHolder
 import com.lifeSavers.emergencyappsignup.databinding.ActivityLoginBinding
 
 class LogInActivity : AppCompatActivity() {
@@ -65,7 +72,7 @@ class LogInActivity : AppCompatActivity() {
             builder.setPositiveButton("Reset", DialogInterface.OnClickListener { _, _ ->
                 forgotPassword(email)
             })
-            builder.setNegativeButton("close", DialogInterface.OnClickListener { _, _ ->  })
+            builder.setNegativeButton("close", DialogInterface.OnClickListener { _, _ -> })
             builder.show()
         }
 
@@ -123,12 +130,37 @@ class LogInActivity : AppCompatActivity() {
                 if (firebaseUser.isEmailVerified) {
                     Toast.makeText(this, "LoggedIn as $email", Toast.LENGTH_SHORT).show()
 
+                    var database =
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .getReference("Users")
+
+                    val postListener = object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            val userType = dataSnapshot.getValue(Integer::class.java)
+
+                            if (userType.toString() == "0") {
+                                startActivity(Intent(this@LogInActivity, PermissionsActivity::class.java))
+                                finish()
+                            }
+                            else {
+                                startActivity(Intent(this@LogInActivity, PermissionsActivity::class.java))
+                                finish()
+                            }
+                        }
+                        override fun onCancelled(error: DatabaseError) {
+                            // Failed to read value
+                            Log.w(TAG, "Failed.", error.toException())
+                        }
+                    }
+
+                    database.child(firebaseUser.uid).child("userType").addListenerForSingleValueEvent(postListener)
                     // open profile
-                    startActivity(Intent(this, PermissionsActivity::class.java))
+
+//                    startActivity(Intent(this, PermissionsActivity::class.java))
                     finish()
-                }
-                else {
-                    Toast.makeText(this, "Please verify your email address.", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Please verify your email address.", Toast.LENGTH_SHORT)
+                        .show()
                 }
 
             }
