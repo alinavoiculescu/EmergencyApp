@@ -35,14 +35,16 @@
         android:orientation="vertical">
 
         <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/profilePic"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:src="@drawable/profile_pic"/>
 
         <TextView
+            android:id="@+id/nameUpEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Popescu Robertto"
+            android:text="Name"
             android:textColor="#5b00e6"
             android:textSize="20dp"
             android:layout_marginTop="8dp"
@@ -53,38 +55,6 @@
             android:layout_height="1dp"
             android:background="#5b00e6"
             android:layout_marginTop="10dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_person"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="First Name"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="18dp"
-            android:layout_marginLeft="5dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Popescu"
-            android:layout_marginLeft="25dp"
-            android:textSize="18dp"
-            android:textColor="@android:color/darker_gray"/>
     </LinearLayout>
 
     <View
@@ -112,17 +82,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Last Name"
+            android:text="Name"
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="18dp"
             android:layout_marginLeft="5dp"/>
 
         <TextView
+            android:id="@+id/nameEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Robertto"
-            android:layout_marginLeft="25dp"
+            android:text="Name"
+            android:layout_marginLeft="10dp"
             android:textSize="18dp"
             android:textColor="@android:color/darker_gray"/>
     </LinearLayout>
@@ -159,10 +130,93 @@
             android:layout_marginLeft="5dp"/>
 
         <TextView
+            android:id="@+id/emailEt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="roberttopopescu@gmail.com"
-            android:layout_marginLeft="70dp"
+            android:text="Email"
+            android:layout_marginLeft="12dp"
+            android:textSize="18dp"
+            android:textColor="@android:color/darker_gray"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_phone"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone Number"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="18dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/phoneNumberEt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone Number"
+            android:layout_marginLeft="10dp"
+            android:textSize="18dp"
+            android:textColor="@android:color/darker_gray"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_age"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Birth Year"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="18dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/birthDateEt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Birth Year"
+            android:layout_marginLeft="10dp"
             android:textSize="18dp"
             android:textColor="@android:color/darker_gray"/>
     </LinearLayout>
@@ -183,6 +237,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/profileEditBtn"
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:background="@drawable/bg_btn"

@@ -14,8 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_ls_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EmergencyAppSignUp">
+        <activity
+            android:name=".ProfileEditActivity"
+            android:exported="false" />
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDkmsjZUMpcNvsHL4Fa04G8MvMWaWzvfFw" />
 
         <activity
@@ -25,8 +29,7 @@
             android:theme="@style/Theme.EmergencyAppSignUp.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />

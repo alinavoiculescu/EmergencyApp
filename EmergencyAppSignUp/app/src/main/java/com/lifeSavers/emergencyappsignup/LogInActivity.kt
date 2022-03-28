@@ -136,7 +136,7 @@ class LogInActivity : AppCompatActivity() {
 
                     val postListener = object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            val userType = dataSnapshot.getValue(Integer::class.java)
+                            val userType = dataSnapshot.getValue(Long::class.java)
 
                             if (userType.toString() == "0") {
                                 startActivity(Intent(this@LogInActivity, MainActivity::class.java))
