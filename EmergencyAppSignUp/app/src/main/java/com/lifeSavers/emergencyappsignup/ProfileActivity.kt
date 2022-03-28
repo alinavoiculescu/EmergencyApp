@@ -73,12 +73,21 @@ class ProfileActivity : AppCompatActivity() {
                     val email = userProfile.email
                     val phoneNumber = userProfile.phoneNumber
                     val yearOfBirth = userProfile.birthDate
+                    val profileImage = userProfile.profileImage
 
                     binding.nameUpEt.setText(name)
                     binding.nameEt.setText(name)
                     binding.emailEt.setText(email)
                     binding.phoneNumberEt.setText(phoneNumber.toString())
                     binding.birthDateEt.setText(yearOfBirth)
+                    // set image
+                    try {
+                        Glide.with(this@ProfileActivity).load(profileImage)
+                            .placeholder(R.drawable.profile_pic)
+                            .into(binding.profilePic)
+                    } catch (e: Exception) {
+
+                    }
                 }
 
             }
