@@ -139,11 +139,11 @@ class LogInActivity : AppCompatActivity() {
                             val userType = dataSnapshot.getValue(Integer::class.java)
 
                             if (userType.toString() == "0") {
-                                startActivity(Intent(this@LogInActivity, PermissionsActivity::class.java))
+                                startActivity(Intent(this@LogInActivity, MainActivity::class.java))
                                 finish()
                             }
                             else {
-                                startActivity(Intent(this@LogInActivity, PermissionsActivity::class.java))
+                                startActivity(Intent(this@LogInActivity, MainActivity::class.java))
                                 finish()
                             }
                         }

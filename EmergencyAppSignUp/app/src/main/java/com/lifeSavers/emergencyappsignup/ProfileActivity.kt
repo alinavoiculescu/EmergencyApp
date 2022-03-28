@@ -48,7 +48,7 @@ class ProfileActivity : AppCompatActivity() {
             // user not null, user is logged in, get user info
             val email = firebaseUser.email
             // set to text view
-            binding.emailTv.text = email
+            //binding.emailTv.text = email
         }
         else {
             // user is null, user is not logged in, goto login activity

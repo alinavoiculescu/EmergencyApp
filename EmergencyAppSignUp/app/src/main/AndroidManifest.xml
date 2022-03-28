@@ -24,6 +24,10 @@
             android:label="@string/title_activity_map"
             android:theme="@style/Theme.EmergencyAppSignUp.NoActionBar" />
         <activity
+            android:name=".MainActivity"
+            android:exported="false"/>
+
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
