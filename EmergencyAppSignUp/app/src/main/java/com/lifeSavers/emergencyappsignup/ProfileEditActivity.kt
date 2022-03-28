@@ -165,7 +165,9 @@ class ProfileEditActivity : AppCompatActivity() {
             .updateChildren(hashmap)
             .addOnSuccessListener {
                 // profile updated
+                progressDialog.dismiss()
                 Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this@ProfileEditActivity, ProfileActivity::class.java))
             }
             .addOnFailureListener {e ->
                 // failed to upload image
