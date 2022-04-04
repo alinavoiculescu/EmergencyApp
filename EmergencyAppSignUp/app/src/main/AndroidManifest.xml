@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -14,6 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_ls_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EmergencyAppSignUp">
+        <activity
+            android:name=".EmergencyPhoneNumbersActivity"
+            android:exported="false" />
         <activity
             android:name=".ProfileEditActivity"
             android:exported="false" />

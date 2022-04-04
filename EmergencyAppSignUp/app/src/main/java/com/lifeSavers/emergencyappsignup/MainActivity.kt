@@ -21,5 +21,9 @@ class MainActivity : AppCompatActivity() {
         binding.mapBtn.setOnClickListener {
             startActivity(Intent(this, PermissionsActivity::class.java))
         }
+
+        binding.phoneNumbersBtn.setOnClickListener {
+            startActivity(Intent(this, EmergencyPhoneNumbersActivity::class.java))
+        }
     }
 }

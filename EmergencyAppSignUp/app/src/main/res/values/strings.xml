@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">EmergencyAppSignUp</string>
     <!-- make signup bold-->
-    <string name="no_account">Not have account? <b>SignUp</b></string>
+    <string name="no_account">No account? <b>Sign Up</b></string>
     <string name="create_a_new_account">Create a New Account</string>
     <string name="name">Name</string>
-    <string name="signup">SignUp</string>
+    <string name="signup">Sign Up</string>
     <string name="phone_number">Phone Number</string>
     <string name="date_of_birth">Year of Birth</string>
     <string name="password">Password</string>
@@ -24,4 +24,5 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="forgot_password"><b>Forgot Password?</b></string>
+    <string name="enter_your_email_here">Enter your email here.</string>
 </resources>

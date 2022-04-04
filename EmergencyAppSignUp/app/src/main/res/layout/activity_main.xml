@@ -26,4 +26,14 @@
         android:layout_marginTop="10dp"
         android:text="Map" />
 
+    <Button
+        android:id="@+id/phoneNumbersBtn"
+        android:layout_width="122dp"
+        android:layout_height="69dp"
+        android:layout_below="@id/profileBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="10dp"
+        android:text="Urgent call" />
+
 </RelativeLayout>
