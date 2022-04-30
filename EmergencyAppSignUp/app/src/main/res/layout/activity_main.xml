@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/profileBtn"
-        android:layout_width="122dp"
+        android:layout_width="130dp"
         android:layout_height="69dp"
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
@@ -18,7 +18,7 @@
 
     <Button
         android:id="@+id/mapBtn"
-        android:layout_width="122dp"
+        android:layout_width="130dp"
         android:layout_height="69dp"
         android:layout_above="@id/profileBtn"
         android:layout_centerInParent="true"
@@ -28,12 +28,22 @@
 
     <Button
         android:id="@+id/phoneNumbersBtn"
-        android:layout_width="122dp"
+        android:layout_width="130dp"
         android:layout_height="69dp"
         android:layout_below="@id/profileBtn"
         android:layout_centerInParent="true"
         android:layout_marginStart="84dp"
         android:layout_marginTop="10dp"
         android:text="Urgent call" />
+
+    <Button
+        android:id="@+id/assistantsListBtn"
+        android:layout_width="130dp"
+        android:layout_height="69dp"
+        android:layout_below="@id/phoneNumbersBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="10dp"
+        android:text="Assistants" />
 
 </RelativeLayout>
