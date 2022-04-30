@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.lifeSavers.emergencyappsignup.databinding.ActivitySignUpBinding
+import com.lifeSavers.emergencyappsignup.model.User
 import java.util.*
 
 class SignUpActivity : AppCompatActivity() {

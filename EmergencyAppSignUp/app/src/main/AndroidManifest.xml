@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EmergencyAppSignUp">
         <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".AssistantsListForUsersActivity"
             android:exported="false" />
         <activity

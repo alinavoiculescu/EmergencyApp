@@ -1,6 +1,4 @@
-package com.lifeSavers.emergencyappsignup
-
-import android.net.Uri
+package com.lifeSavers.emergencyappsignup.model
 
 data class User(
     val name: String? = null,

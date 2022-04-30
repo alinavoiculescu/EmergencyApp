@@ -13,8 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.lifeSavers.emergencyappsignup.adapter.UserAdapter
 import com.lifeSavers.emergencyappsignup.databinding.ActivityAssistantsListForUsersBinding
-import com.lifeSavers.emergencyappsignup.databinding.ActivityMainBinding
-import kotlinx.android.synthetic.main.item_profile.*
+import com.lifeSavers.emergencyappsignup.model.User
 
 class AssistantsListForUsersActivity : AppCompatActivity() {
 

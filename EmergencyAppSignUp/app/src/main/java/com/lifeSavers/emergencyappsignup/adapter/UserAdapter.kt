@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lifeSavers.emergencyappsignup.R
-import com.lifeSavers.emergencyappsignup.User
+import com.lifeSavers.emergencyappsignup.model.User
 import com.lifeSavers.emergencyappsignup.databinding.ItemProfileBinding
 
 class UserAdapter(var context: Context, var usersList: ArrayList<User>): RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
