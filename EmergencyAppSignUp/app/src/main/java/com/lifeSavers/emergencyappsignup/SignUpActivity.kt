@@ -130,7 +130,7 @@ class SignUpActivity : AppCompatActivity() {
 
                         database = FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users")
 
-                        val user = User(name1, email1, phoneNumber1, birthDate1, 0, "")
+                        val user = User(firebaseUser.uid, name1, email1, phoneNumber1, birthDate1, 0, "")
                         database.child(firebaseUser.uid).setValue(user) // adds on Database a new registred user
                             .addOnSuccessListener {
                                 binding.nameEt.text.clear()

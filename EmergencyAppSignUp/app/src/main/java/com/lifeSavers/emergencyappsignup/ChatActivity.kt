@@ -20,8 +20,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.lifeSavers.emergencyappsignup.adapter.MessagesAdapter
 import com.lifeSavers.emergencyappsignup.databinding.ActivityChatBinding
-import kotlinx.android.synthetic.main.activity_sign_up.view.*
-import kotlinx.android.synthetic.main.send_msg.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -46,41 +44,42 @@ class ChatActivity : AppCompatActivity() {
                 if (data.data != null) {
                     val selectedImage = data.data
                     val calendar = Calendar.getInstance()
-                    val refence = storage!!.reference.child("Chats")
+                    val reference = storage!!.reference.child("Chats")
                         .child(calendar.timeInMillis.toString() + "")
                     dialog!!.show()
-                    refence.putFile(selectedImage!!)
+                    reference.putFile(selectedImage!!)
                         .addOnCompleteListener { task ->
                             dialog!!.dismiss()
                             if (task.isSuccessful) {
-                                refence.downloadUrl.addOnSuccessListener { uri->
+                                reference.downloadUrl.addOnSuccessListener { uri ->
                                     val filePath = uri.toString()
-                                    val messageTxt :String = binding!!.messageBox.text.toString()
+                                    val messageTxt: String = binding!!.messageBox.text.toString()
                                     val date = Date()
                                     val message = Message(messageTxt, senderUid, date.time)
                                     message.message = "photo"
                                     message.imageUrl = filePath
                                     binding!!.messageBox.setText("")
                                     val randomkey = database!!.reference.push().key
-                                    val lastMsgObj = HashMap<String,Any>()
+                                    val lastMsgObj = HashMap<String, Any>()
                                     lastMsgObj["lastMsg"] = message.message!!
                                     lastMsgObj["lastMsgTime"] = date.time
                                     database!!.reference.child("Chats")
+                                        .child(senderRoom!!)
                                         .updateChildren(lastMsgObj)
                                     database!!.reference.child("Chats")
                                         .child(receiverRoom!!)
                                         .updateChildren(lastMsgObj)
                                     database!!.reference.child("Chats")
-                                        .child(senderUid!!)
-                                        .child("messages")
+                                        .child(senderRoom!!)
+                                        .child("Messages")
                                         .child(randomkey!!)
                                         .setValue(message).addOnSuccessListener {
                                             database!!.reference.child("Chats")
                                                 .child(receiverRoom!!)
-                                                .child("messages")
+                                                .child("Messages")
                                                 .child(randomkey)
                                                 .setValue(message)
-                                                .addOnSuccessListener {  }
+                                                .addOnSuccessListener { }
                                         }
                                 }
                             }
@@ -95,7 +94,7 @@ class ChatActivity : AppCompatActivity() {
         val currentId = FirebaseAuth.getInstance().uid
         database!!.reference.child("Presence")
             .child(currentId!!)
-            .setValue("offline")
+            .setValue("Offline")
     }
 
     override fun onPause() {
@@ -103,7 +102,7 @@ class ChatActivity : AppCompatActivity() {
         val currentId = FirebaseAuth.getInstance().uid
         database!!.reference.child("Presence")
             .child(currentId!!)
-            .setValue("offline")
+            .setValue("Offline")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,8 +111,7 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 //        setSupportActionBar(binding!!.toolbar)
-        database =
-            FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+        database = FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
         storage = FirebaseStorage.getInstance()
         dialog = ProgressDialog(this@ChatActivity)
         dialog!!.setMessage("Uploading image...")
@@ -123,20 +121,24 @@ class ChatActivity : AppCompatActivity() {
         val profile = intent.getStringExtra("image")
         binding!!.name.text = name
         Glide.with(this@ChatActivity).load(profile)
-            .placeholder(R.drawable.placeholder)
+            .placeholder(R.drawable.profile_pic)
             .into(binding!!.profilePic01)
-        binding!!.imageView.setOnClickListener { finish() }
-        receiverUid = intent.getStringExtra("phoneNumber")
+        binding!!.imageView.setOnClickListener(View.OnClickListener { finish() })
+        receiverUid = intent.getStringExtra("uid")
         senderUid = FirebaseAuth.getInstance().uid
         database!!.reference.child("Presence").child(receiverUid!!)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val status = snapshot.getValue(String::class.java)
-                    if (status == "Offline") {
-                        binding!!.status.visibility = View.GONE
-                    } else {
-                        binding!!.status.setText(status)
-                        binding!!.status.visibility = View.VISIBLE
+                    if (snapshot.exists()) {
+                        val status = snapshot.getValue(String::class.java)
+                        if (!status!!.isEmpty()) {
+                            if (status == "Offline") {
+                                binding!!.status.visibility = View.GONE
+                            } else {
+                                binding!!.status.setText(status)
+                                binding!!.status.visibility = View.VISIBLE
+                            }
+                        }
                     }
                 }
 
@@ -150,7 +152,7 @@ class ChatActivity : AppCompatActivity() {
         binding!!.recyclerView.adapter = adapter
         database!!.reference.child("Chats")
             .child(senderRoom!!)
-            .child("messages")
+            .child("Messages")
             .addValueEventListener(object : ValueEventListener {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -166,7 +168,7 @@ class ChatActivity : AppCompatActivity() {
                 override fun onCancelled(error: DatabaseError) {}
             })
 
-        binding!!.send.setOnClickListener {
+        binding!!.send.setOnClickListener(View.OnClickListener {
             val messageTxt: String = binding!!.messageBox.text.toString()
             val date = Date()
             val message = Message(messageTxt, senderUid, date.time)
@@ -182,19 +184,24 @@ class ChatActivity : AppCompatActivity() {
             database!!.reference.child("Chats").child(receiverRoom!!)
                 .updateChildren(lastMsgObj)
             database!!.reference.child("Chats").child(senderRoom!!)
-                .child(receiverRoom!!)
-                .child("messages")
+                .child("Messages")
                 .child(randomKey!!)
                 .setValue(message)
-                .addOnSuccessListener { }
-        }
+                .addOnSuccessListener {
+                    database!!.reference.child("Chats")
+                        .child(receiverRoom!!)
+                        .child("Messages")
+                        .child(randomKey)
+                        .setValue(message).addOnSuccessListener { }
+                }
+        })
 
-        binding!!.attachment.setOnClickListener {
+        binding!!.attachment.setOnClickListener(View.OnClickListener {
             val intent = Intent()
             intent.action = Intent.ACTION_GET_CONTENT
             intent.type = "image/*"
             startActivityForResult(intent, 25)
-        }
+        })
 
         val handler = Handler()
         binding!!.messageBox.addTextChangedListener(object : TextWatcher {

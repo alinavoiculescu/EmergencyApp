@@ -32,7 +32,7 @@ class UserAdapter(var context: Context, var usersList: ArrayList<User>): Recycle
             val intent = Intent(context, ChatActivity::class.java)
             intent.putExtra("name", user.name)
             intent.putExtra("image", user.profileImage)
-            intent.putExtra("phoneNumber", user.phoneNumber)
+            intent.putExtra("uid", user.uid)
             context.startActivity(intent)
         }
     }
