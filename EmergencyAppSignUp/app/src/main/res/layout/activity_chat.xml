@@ -16,6 +16,7 @@
 
         <LinearLayout
             android:orientation="horizontal"
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -24,12 +25,14 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_back"/>
+                android:src="@drawable/ic_back"
+                app:tint="@color/white"
+                android:layout_marginEnd="5dp"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profilePic01"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
                 android:src="@drawable/profile_pic"
                 android:layout_width="42dp"
                 android:layout_height="42dp"/>
@@ -44,6 +47,7 @@
                 <TextView
                     android:id="@+id/name"
                     android:text="Profile Name"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:layout_gravity="center"
@@ -55,8 +59,10 @@
                 <TextView
                     android:id="@+id/status"
                     android:text="Online"
+                    android:textColor="@color/white"
                     android:visibility="invisible"
                     android:textSize="14sp"
+                    android:textAlignment="textStart"
                     android:textStyle="bold|normal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -69,6 +75,7 @@
         android:id="@+id/linear01"
         android:orientation="vertical"
         android:layout_below="@id/toolbar"
+        android:layout_marginBottom="120dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -83,6 +90,7 @@
     <LinearLayout
         android:id="@+id/linear02"
         android:layout_above="@id/linear01"
+        android:background="@drawable/bottom_shpe"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="2"
@@ -155,7 +163,6 @@
                     app:tint="@android:color/darker_gray" />
 
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
 
         <ImageView

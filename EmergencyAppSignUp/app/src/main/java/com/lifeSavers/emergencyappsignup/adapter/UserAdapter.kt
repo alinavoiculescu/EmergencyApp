@@ -1,11 +1,13 @@
 package com.lifeSavers.emergencyappsignup.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.lifeSavers.emergencyappsignup.ChatActivity
 import com.lifeSavers.emergencyappsignup.R
 import com.lifeSavers.emergencyappsignup.model.User
 import com.lifeSavers.emergencyappsignup.databinding.ItemProfileBinding
@@ -26,6 +28,13 @@ class UserAdapter(var context: Context, var usersList: ArrayList<User>): Recycle
         Glide.with(context).load(user.profileImage)
             .placeholder(R.drawable.profile_pic)
             .into(holder.binding.profile)
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra("name", user.name)
+            intent.putExtra("image", user.profileImage)
+            intent.putExtra("phoneNumber", user.phoneNumber)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = usersList.size
