@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.lifeSavers.emergencyappsignup.R
 import com.lifeSavers.emergencyappsignup.databinding.DeleteLayoutBinding
 import com.lifeSavers.emergencyappsignup.databinding.ReceiveMsgBinding
@@ -26,8 +25,8 @@ class MessagesAdapter(
     lateinit var messages: ArrayList<Message>
     val ITEM_SENT = 1
     val ITEM_RECEIVE = 2
-    val senderRoom: String
-    val receiverRoom: String
+    var senderRoom: String
+    var receiverRoom: String
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ITEM_SENT) {
@@ -41,8 +40,8 @@ class MessagesAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        val messages = messages[position]
-        return if (FirebaseAuth.getInstance().uid == messages.senderId) {
+        val message: Message = messages[position]
+        return if (FirebaseAuth.getInstance().uid == message.senderId) {
             ITEM_SENT
         } else {
             ITEM_RECEIVE
@@ -78,13 +77,15 @@ class MessagesAdapter(
                 binding.everyone.setOnClickListener(View.OnClickListener {
                     message.message = "This message is removed."
                     message.messageId?.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("Chats")
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(senderRoom)
                             .child("Messages")
                             .child(it1).setValue(message)
                     }
                     message.messageId?.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("Chats")
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(receiverRoom)
                             .child("Messages")
                             .child(it1).setValue(message)
@@ -93,7 +94,8 @@ class MessagesAdapter(
                 })
                 binding.delete.setOnClickListener (View.OnClickListener {
                     message.messageId?.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("Chats")
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(senderRoom)
                             .child("Messages")
                             .child(it1).setValue(null)
@@ -128,15 +130,17 @@ class MessagesAdapter(
                     .create()
 
                 binding.everyone.setOnClickListener {
-                    message.message = "This message is removed"
+                    message.message = "This message is removed."
                     message.messageId?.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("Chats")
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(senderRoom)
                             .child("Messages")
                             .child(it1).setValue(message)
                     }
                     message.messageId.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("Chats")
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(receiverRoom)
                             .child("Messages")
                             .child(it1!!).setValue(message)
@@ -145,7 +149,8 @@ class MessagesAdapter(
                 }
                 binding.delete.setOnClickListener {
                     message.messageId.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("Chats")
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(senderRoom)
                             .child("Messages")
                             .child(it1!!).setValue(null)

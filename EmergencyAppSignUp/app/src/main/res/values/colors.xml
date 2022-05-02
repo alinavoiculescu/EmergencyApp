@@ -11,4 +11,5 @@
     <color name="dark_green">#289b35</color>
     <color name="pink">#ff4081</color>
     <color name="main_color">#5b00e6</color>
+    <color name="complementary_main_color">#e6a100</color>
 </resources>

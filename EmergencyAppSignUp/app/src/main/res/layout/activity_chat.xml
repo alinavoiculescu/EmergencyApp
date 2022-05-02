@@ -90,7 +90,7 @@
     <LinearLayout
         android:id="@+id/linear02"
         android:layout_above="@id/linear01"
-        android:background="@drawable/bottom_shpe"
+        android:background="@drawable/bottom_shape"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="2"
@@ -107,7 +107,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="8dp"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content">
 
             <LinearLayout
