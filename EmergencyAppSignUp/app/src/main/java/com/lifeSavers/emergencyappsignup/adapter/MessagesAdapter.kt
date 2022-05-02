@@ -1,5 +1,6 @@
 package com.lifeSavers.emergencyappsignup.adapter
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.lifeSavers.emergencyappsignup.R
 import com.lifeSavers.emergencyappsignup.databinding.DeleteLayoutBinding
+import com.lifeSavers.emergencyappsignup.databinding.ReceiveMsgBinding
 import com.lifeSavers.emergencyappsignup.databinding.SendMsgBinding
 import com.lifeSavers.emergencyappsignup.model.Message
 
@@ -24,8 +25,8 @@ class MessagesAdapter(
     lateinit var messages: ArrayList<Message>
     val ITEM_SENT = 1
     val ITEM_RECEIVE = 2
-    val senderRoom: String
-    val receiverRoom: String
+    var senderRoom: String
+    var receiverRoom: String
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ITEM_SENT) {
@@ -39,14 +40,15 @@ class MessagesAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        val messages = messages[position]
-        return if (FirebaseAuth.getInstance().uid == messages.senderId) {
+        val message: Message = messages[position]
+        return if (FirebaseAuth.getInstance().uid == message.senderId) {
             ITEM_SENT
         } else {
             ITEM_RECEIVE
         }
     }
 
+    @SuppressLint("InflateParams")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val message = messages[position]
         if (holder.javaClass == SentMsgHolder::class.java) {
@@ -62,7 +64,7 @@ class MessagesAdapter(
             }
             viewHolder.binding.message.text = message.message
             viewHolder.itemView.setOnLongClickListener {
-                val view = LayoutInflater.from(context)
+                val view: View = LayoutInflater.from(context)
                     .inflate(R.layout.delete_layout, null)
 
                 val binding: DeleteLayoutBinding = DeleteLayoutBinding.bind(view)
@@ -72,32 +74,35 @@ class MessagesAdapter(
                     .setView(binding.root)
                     .create()
 
-                binding.everyone.setOnClickListener {
-                    message.message = "This message is removed"
+                binding.everyone.setOnClickListener(View.OnClickListener {
+                    message.message = "This message is removed."
                     message.messageId?.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("chats")
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(senderRoom)
-                            .child("message")
+                            .child("Messages")
                             .child(it1).setValue(message)
                     }
-                    message.messageId.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("chats")
+                    message.messageId?.let { it1 ->
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(receiverRoom)
-                            .child("message")
-                            .child(it1!!).setValue(message)
+                            .child("Messages")
+                            .child(it1).setValue(message)
                     }
                     dialog.dismiss()
-                }
-                binding.delete.setOnClickListener {
-                    message.messageId.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("chats")
+                })
+                binding.delete.setOnClickListener (View.OnClickListener {
+                    message.messageId?.let { it1 ->
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(senderRoom)
-                            .child("message")
-                            .child(it1!!).setValue(null)
+                            .child("Messages")
+                            .child(it1).setValue(null)
                     }
                     dialog.dismiss()
-                }
-                binding.cancel.setOnClickListener { dialog.dismiss() }
+                })
+                binding.cancel.setOnClickListener(View.OnClickListener { dialog.dismiss() })
                 dialog.show()
                 false
             }
@@ -114,7 +119,7 @@ class MessagesAdapter(
             }
             viewHolder.binding.message.text = message.message
             viewHolder.itemView.setOnLongClickListener {
-                val view = LayoutInflater.from(context)
+                val view: View = LayoutInflater.from(context)
                     .inflate(R.layout.delete_layout, null)
 
                 val binding: DeleteLayoutBinding = DeleteLayoutBinding.bind(view)
@@ -125,45 +130,58 @@ class MessagesAdapter(
                     .create()
 
                 binding.everyone.setOnClickListener {
-                    message.message = "This message is removed"
+                    message.message = "This message is removed."
                     message.messageId?.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("chats")
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(senderRoom)
-                            .child("message")
+                            .child("Messages")
                             .child(it1).setValue(message)
                     }
                     message.messageId.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("chats")
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(receiverRoom)
-                            .child("message")
+                            .child("Messages")
                             .child(it1!!).setValue(message)
                     }
                     dialog.dismiss()
                 }
                 binding.delete.setOnClickListener {
                     message.messageId.let { it1 ->
-                        FirebaseDatabase.getInstance().reference.child("chats")
+                        FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                            .reference.child("Chats")
                             .child(senderRoom)
-                            .child("message")
+                            .child("Messages")
                             .child(it1!!).setValue(null)
                     }
                     dialog.dismiss()
                 }
-                binding.cancel.setOnClickListener { dialog.dismiss() }
+                binding.cancel.setOnClickListener(View.OnClickListener { dialog.dismiss() })
                 dialog.show()
                 false
             }
         }
     }
 
-    override fun getItemCount(): Int = messages.size
+    override fun getItemCount(): Int {
+        return messages.size
+    }
 
     inner class SentMsgHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding: SendMsgBinding = SendMsgBinding.bind(itemView)
+        var binding: SendMsgBinding
+
+        init {
+            binding = SendMsgBinding.bind(itemView)
+        }
     }
 
     inner class ReceiveMsgHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding: SendMsgBinding = SendMsgBinding.bind(itemView)
+        var binding: ReceiveMsgBinding
+
+        init {
+            binding = ReceiveMsgBinding.bind(itemView)
+        }
     }
 
     init {
