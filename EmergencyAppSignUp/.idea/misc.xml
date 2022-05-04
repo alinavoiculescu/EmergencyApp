@@ -73,14 +73,24 @@
         <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/receive_msg.xml" value="0.22418478260869565" />
         <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/send_msg.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/drawable/ic_location_pin_svgrepo_com.xml" value="0.217" />
+        <entry key="app/src/main/res/layout/activity_assistants_list_for_users.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_emergency_phone_numbers.xml" value="0.43690496751965" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.26950836181640625" />
         <entry key="app/src/main/res/layout/activity_map.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_permissions.xml" value="0.298768310546875" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2388458854884" />
+        <entry key="app/src/main/res/layout/activity_profile_edit.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.1766304347826087" />
         <entry key="app/src/main/res/layout/content_map.xml" value="0.1307830810546875" />
+        <entry key="app/src/main/res/layout/delete_layout.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/dialog_forgot_password.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/item_profile.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/receive_msg.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/send_msg.xml" value="0.246875" />
       </map>
     </option>
   </component>
