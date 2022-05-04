@@ -55,14 +55,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
         materialSearchBar = findViewById(R.id.searchBar)
-        btnFind = findViewById(R.id.btn_find)
         rippleBg = findViewById(R.id.ripple_bg)
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync(this)
         mapView = mapFragment.view
         mFusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(this@MapActivity)
-        Places.initialize(this@MapActivity, ("AIzaSyDkmsjZUMpcNvsHL4Fa04G8MvMWaWzvfFw"))
+        Places.initialize(this@MapActivity, ("AIzaSyDBwNy08Ez4JnijhtfB8YH666veU-T-lTo"))
         placesClient = Places.createClient(this)
         val token = AutocompleteSessionToken.newInstance()
         materialSearchBar.setOnSearchActionListener(object : OnSearchActionListener {
@@ -156,16 +155,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
             override fun OnItemDeleteListener(position: Int, v: View) {}
         })
-        btnFind = findViewById(R.id.btn_find)
-        btnFind.setOnClickListener(View.OnClickListener {
-            // val currentMarkerLocation = mMap.cameraPosition.target
-            rippleBg.startRippleAnimation()
-            Handler(Looper.getMainLooper()).postDelayed({
-                rippleBg.stopRippleAnimation()
-                startActivity(Intent(this@MapActivity, SecondFragment::class.java))
-                finish()
-            }, 3000)
-        })
     }
 
     @SuppressLint("MissingPermission")
@@ -220,168 +209,4 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-
-// var 3
-
-//    @SuppressLint("MissingPermission")
-//    open fun getDeviceLocation() {
-//        mFusedLocationProviderClient.getLastLocation()
-//            .addOnCompleteListener(object : OnCompleteListener<Location?> {
-//                override fun onComplete(@NonNull task: Task<Location?>) {
-//                    if (task.isSuccessful()) {
-//                        mLastKnownLocation = task.getResult()!!
-//                        if (mLastKnownLocation == null) {
-//                            val locationRequest: LocationRequest = LocationRequest.create()
-//                            locationRequest.setInterval(10000)
-//                            locationRequest.setFastestInterval(5000)
-//                            locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-//                            locationCallback = object : LocationCallback() {
-//                                override fun onLocationResult(locationResult: LocationResult?) {
-//                                    super.onLocationResult(locationResult)
-//                                    if (locationResult == null) {
-//                                        return
-//                                    }
-//                                    mLastKnownLocation = locationResult.getLastLocation()
-//                                    mMap.moveCamera(
-//                                        CameraUpdateFactory.newLatLngZoom(
-//                                            LatLng(
-//                                                mLastKnownLocation.getLatitude(),
-//                                                mLastKnownLocation.getLongitude()
-//                                            ), DEFAULT_ZOOM
-//                                        )
-//                                    )
-//                                    mFusedLocationProviderClient.removeLocationUpdates(locationCallback)
-//                                }
-//                            }
-//                            mFusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
-//                        } else {
-//                            mMap.moveCamera(
-//                                CameraUpdateFactory.newLatLngZoom(
-//                                    LatLng(
-//                                        mLastKnownLocation.getLatitude(),
-//                                        mLastKnownLocation.getLongitude()
-//                                    ), DEFAULT_ZOOM
-//                                )
-//                            )
-//                        }
-//                    } else {
-//                        Toast.makeText(this@MapActivity, "unable to get last location", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            })
-//    }
-
-// var 2
-
-//    @SuppressLint("MissingPermission")
-//    fun getDeviceLocation() {
-//        mFusedLocationProviderClient.getLastLocation()
-//            .addOnCompleteListener(object : OnCompleteListener<Location?> {
-//                override fun onComplete(@NonNull task: Task<Location?>) {
-//                    if (task.isSuccessful()) {
-//                        mLastKnownLocation = task.getResult()
-//                        if (mLastKnownLocation != null) {
-//                            mMap.moveCamera(
-//                                CameraUpdateFactory.newLatLngZoom(
-//                                    LatLng(
-//                                        mLastKnownLocation.getLatitude(),
-//                                        mLastKnownLocation.getLongitude()
-//                                    ), DEFAULT_ZOOM
-//                                )
-//                            )
-//                        } else {
-//                            val locationRequest: LocationRequest = LocationRequest.create()
-//                            locationRequest.setInterval(10000)
-//                            locationRequest.setFastestInterval(5000)
-//                            locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-//                            locationCallback = object : LocationCallback() {
-//                                override fun onLocationResult(locationResult: LocationResult?) {
-//                                    super.onLocationResult(locationResult)
-//                                    if (locationResult == null) {
-//                                        return
-//                                    }
-//                                    mLastKnownLocation = locationResult.getLastLocation()
-//                                    mMap.moveCamera(
-//                                        CameraUpdateFactory.newLatLngZoom(
-//                                            LatLng(
-//                                                mLastKnownLocation.getLatitude(),
-//                                                mLastKnownLocation.getLongitude()
-//                                            ), DEFAULT_ZOOM
-//                                        )
-//                                    )
-//                                    mFusedLocationProviderClient.removeLocationUpdates(locationCallback)
-//                                }
-//                            }
-//                            mFusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
-//                        }
-//                    } else {
-//                        Toast.makeText(this@MapActivity, "unable to get last location", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            })
-//    }
-
-
-
-//var 1
-
-
-//    @get:SuppressLint("MissingPermission")
-//    val deviceLocation: Unit
-//        get() {
-//            mFusedLocationProviderClient.lastLocation
-//                .addOnCompleteListener { task ->
-//                    if (task.isSuccessful) {
-//                        mLastKnownLocation = task.getResult()
-//                        if (mLastKnownLocation != null) {
-//                            mMap.moveCamera(
-//                                CameraUpdateFactory.newLatLngZoom(
-//                                    LatLng(
-//                                        mLastKnownLocation.latitude,
-//                                        mLastKnownLocation.longitude
-//                                    ), DEFAULT_ZOOM
-//                                )
-//                            )
-//                        } else {
-//                            val locationRequest =
-//                                LocationRequest.create()
-//                            locationRequest.interval = 10000
-//                            locationRequest.fastestInterval = 5000
-//                            locationRequest.priority =
-//                                LocationRequest.PRIORITY_HIGH_ACCURACY
-//                            locationCallback = object : LocationCallback() {
-//                                override fun onLocationResult(locationResult: LocationResult) {
-//                                    super.onLocationResult(locationResult)
-//                                    if (locationResult == null) {
-//                                        return
-//                                    }
-//                                    mLastKnownLocation = locationResult.lastLocation
-//                                    mMap.moveCamera(
-//                                        CameraUpdateFactory.newLatLngZoom(
-//                                            LatLng(
-//                                                mLastKnownLocation.getLatitude(),
-//                                                mLastKnownLocation.getLongitude()
-//                                            ), DEFAULT_ZOOM
-//                                        )
-//                                    )
-//                                    mFusedLocationProviderClient.removeLocationUpdates(
-//                                        locationCallback
-//                                    )
-//                                }
-//                            }
-//                            mFusedLocationProviderClient.requestLocationUpdates(
-//                                locationRequest,
-//                                locationCallback,
-//                                null
-//                            )
-//                        }
-//                    } else {
-//                        Toast.makeText(
-//                            this@MapActivity,
-//                            "unable to get last location",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                    }
-//                }
-//        }
 }

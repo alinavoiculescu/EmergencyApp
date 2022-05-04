@@ -7,14 +7,22 @@
     android:layout_gravity="center"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categories"
+        android:textSize="30sp"
+        android:textAllCaps="true"
+        android:padding="10dp"/>
+
     <Button
         android:id="@+id/profileBtn"
         android:layout_width="130dp"
         android:layout_height="69dp"
         android:layout_centerInParent="true"
+        android:layout_marginStart="84dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="84dp"
-        android:text="Profile" />
+        android:text="Profile"/>
 
     <Button
         android:id="@+id/mapBtn"
@@ -24,7 +32,7 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="84dp"
         android:layout_marginTop="10dp"
-        android:text="Map" />
+        android:text="Map"/>
 
     <Button
         android:id="@+id/phoneNumbersBtn"

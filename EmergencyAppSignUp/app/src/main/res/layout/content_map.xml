@@ -46,15 +46,4 @@
         android:outlineProvider="bounds"
         app:mt_placeholder="Search a place"/>
 
-    <Button
-        android:id="@+id/btn_find"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Find..."
-        android:textColor="#FFFFFF"
-        android:background="@color/colorPrimary"
-        android:layout_margin="16dp"
-        android:textStyle="bold"/>
-
 </RelativeLayout>
