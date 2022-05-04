@@ -6,8 +6,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".ProfileActivity">
-    <!--
+    tools:context=".ProfileActivity"
+    android:background="@drawable/backgroundimg_profile">
+
+<!--
         android:padding="20dp"
     android:gravity="center"-->
 

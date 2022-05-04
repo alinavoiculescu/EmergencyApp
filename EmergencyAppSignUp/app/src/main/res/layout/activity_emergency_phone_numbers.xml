@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".EmergencyPhoneNumbersActivity">
+    tools:context=".EmergencyPhoneNumbersActivity"
+    android:background="@drawable/backgroundimg_phones">
+
 
     <LinearLayout
         android:layout_width="match_parent"

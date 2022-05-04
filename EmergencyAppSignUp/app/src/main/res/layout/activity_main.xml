@@ -5,28 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/backgroundimg_main">
 
-    <TextView
+
+<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Categories"
         android:textSize="30sp"
         android:textAllCaps="true"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:textColor="@color/quantum_grey700"/>
 
     <Button
         android:id="@+id/profileBtn"
-        android:layout_width="130dp"
+        android:layout_width="180dp"
         android:layout_height="69dp"
         android:layout_centerInParent="true"
         android:layout_marginStart="84dp"
         android:layout_marginTop="10dp"
-        android:text="Profile"/>
+        android:text="Profile" />
 
     <Button
         android:id="@+id/mapBtn"
-        android:layout_width="130dp"
+        android:layout_width="180dp"
         android:layout_height="69dp"
         android:layout_above="@id/profileBtn"
         android:layout_centerInParent="true"
@@ -36,7 +41,7 @@
 
     <Button
         android:id="@+id/phoneNumbersBtn"
-        android:layout_width="130dp"
+        android:layout_width="180dp"
         android:layout_height="69dp"
         android:layout_below="@id/profileBtn"
         android:layout_centerInParent="true"
@@ -46,7 +51,7 @@
 
     <Button
         android:id="@+id/assistantsListBtn"
-        android:layout_width="130dp"
+        android:layout_width="180dp"
         android:layout_height="69dp"
         android:layout_below="@id/phoneNumbersBtn"
         android:layout_centerInParent="true"

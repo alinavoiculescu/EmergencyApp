@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AssistantsListForUsersActivity">
+    tools:context=".AssistantsListForUsersActivity"
+    android:background="@drawable/backgroundimg_assistants">
 
-    <TextView
+
+<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Get help from our Life Savers"
