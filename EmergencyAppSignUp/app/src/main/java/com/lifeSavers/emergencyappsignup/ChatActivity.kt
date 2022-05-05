@@ -3,14 +3,13 @@ package com.lifeSavers.emergencyappsignup
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.lifeSavers.emergencyappsignup.model.Message
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -20,9 +19,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.lifeSavers.emergencyappsignup.adapter.MessagesAdapter
 import com.lifeSavers.emergencyappsignup.databinding.ActivityChatBinding
+import com.lifeSavers.emergencyappsignup.model.Message
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 class ChatActivity : AppCompatActivity() {
 
@@ -111,7 +109,8 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
 //        setSupportActionBar(binding!!.toolbar)
-        database = FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+        database =
+            FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
         storage = FirebaseStorage.getInstance()
         dialog = ProgressDialog(this@ChatActivity)
         dialog!!.setMessage("Uploading image...")

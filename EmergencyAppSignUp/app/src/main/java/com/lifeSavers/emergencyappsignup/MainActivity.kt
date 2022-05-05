@@ -2,7 +2,6 @@ package com.lifeSavers.emergencyappsignup
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.lifeSavers.emergencyappsignup.databinding.ActivityMainBinding

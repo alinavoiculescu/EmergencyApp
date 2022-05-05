@@ -76,7 +76,6 @@ class SignUpActivity : AppCompatActivity() {
         confirmedPassword = binding.confirmedPasswordEt.text.toString().trim()
 
 
-
         val calendar = Calendar.getInstance()
         val currentYear = calendar[Calendar.YEAR]
 
@@ -126,19 +125,27 @@ class SignUpActivity : AppCompatActivity() {
                         val phoneNumber1 = phoneNumber
                         val birthDate1 = birthDate
 
-                        val email = firebaseUser!!.email
+                        val email = firebaseUser.email
 
-                        database = FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users")
+                        database =
+                            FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                                .getReference("Users")
 
-                        val user = User(firebaseUser.uid, name1, email1, phoneNumber1, birthDate1, 0, "")
-                        database.child(firebaseUser.uid).setValue(user) // adds on Database a new registred user
+                        val user =
+                            User(firebaseUser.uid, name1, email1, phoneNumber1, birthDate1, 0, "")
+                        database.child(firebaseUser.uid)
+                            .setValue(user) // adds on Database a new registred user
                             .addOnSuccessListener {
                                 binding.nameEt.text.clear()
                                 binding.emailEt.text.clear()
                                 binding.phoneNumberEt.text.clear()
                                 binding.birthDateEt.text.clear()
 
-                                Toast.makeText(this, "Account created. Please check your email for verification.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Account created. Please check your email for verification.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
 
                                 firebaseAuth.signOut()
 
@@ -151,7 +158,11 @@ class SignUpActivity : AppCompatActivity() {
                             }
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(this, "Account not created due to ${e.message}.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "Account not created due to ${e.message}.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
             }
             .addOnFailureListener { e ->

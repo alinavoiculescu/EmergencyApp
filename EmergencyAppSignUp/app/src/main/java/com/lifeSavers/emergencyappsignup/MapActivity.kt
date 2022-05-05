@@ -5,7 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
 import android.location.Location
-import android.os.Bundle
+import android.os.*
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -13,7 +13,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
@@ -22,7 +21,6 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.AutocompletePrediction
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken
@@ -34,21 +32,17 @@ import com.mancj.materialsearchbar.MaterialSearchBar.OnSearchActionListener
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter
 import com.skyfishjy.library.RippleBackground
 import java.util.*
-import android.os.*
-import androidx.annotation.NonNull
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var mMap: GoogleMap
     lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
-    lateinit var placesClient:PlacesClient
-    lateinit var predictionList : List<AutocompletePrediction>
+    lateinit var placesClient: PlacesClient
+    lateinit var predictionList: List<AutocompletePrediction>
     lateinit var mLastKnownLocation: Location
     lateinit var locationCallback: LocationCallback
     lateinit var materialSearchBar: MaterialSearchBar
     var mapView: View? = null
-    lateinit var btnFind : Button
+    lateinit var btnFind: Button
     lateinit var rippleBg: RippleBackground
     val DEFAULT_ZOOM = 15f
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,7 +93,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                                     suggestionsList.add(prediction.getFullText(null).toString())
                                 }
                                 materialSearchBar.updateLastSuggestions(suggestionsList)
-                                if (!materialSearchBar.isSuggestionsVisible()) {
+                                if (!materialSearchBar.isSuggestionsVisible) {
                                     materialSearchBar.showSuggestionsList()
                                 }
                             }
@@ -118,12 +112,15 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                     return
                 }
                 val selectedPrediction = predictionList[position]
-                val suggestion = materialSearchBar.getLastSuggestions()[position].toString()
-                materialSearchBar.setText(suggestion)
-                Handler(Looper.getMainLooper()).postDelayed({ materialSearchBar.clearSuggestions() }, 1000)
+                val suggestion = materialSearchBar.lastSuggestions[position].toString()
+                materialSearchBar.text = suggestion
+                Handler(Looper.getMainLooper()).postDelayed(
+                    { materialSearchBar.clearSuggestions() },
+                    1000
+                )
                 val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(
-                    materialSearchBar.getWindowToken(),
+                    materialSearchBar.windowToken,
                     InputMethodManager.HIDE_IMPLICIT_ONLY
                 )
                 val placeId = selectedPrediction.placeId

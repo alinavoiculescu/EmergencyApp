@@ -92,7 +92,7 @@ class MessagesAdapter(
                     }
                     dialog.dismiss()
                 })
-                binding.delete.setOnClickListener (View.OnClickListener {
+                binding.delete.setOnClickListener(View.OnClickListener {
                     message.messageId?.let { it1 ->
                         FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
                             .reference.child("Chats")

@@ -8,6 +8,4 @@ data class User(
     val birthDate: String? = null,
     val userType: Long? = null,
     val profileImage: String? = null
-) {
-
-}
+)

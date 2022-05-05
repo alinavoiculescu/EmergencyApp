@@ -5,7 +5,6 @@ import android.app.ProgressDialog
 import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Patterns
@@ -17,6 +16,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -27,7 +27,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.lifeSavers.emergencyappsignup.databinding.ActivityProfileEditBinding
 import java.util.*
-import kotlin.collections.HashMap
 
 class ProfileEditActivity : AppCompatActivity() {
 
@@ -160,7 +159,9 @@ class ProfileEditActivity : AppCompatActivity() {
         }
 
         // update to database
-        val reference = FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users")
+        val reference =
+            FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+                .getReference("Users")
         reference.child(firebaseAuth.uid!!)
             .updateChildren(hashmap)
             .addOnSuccessListener {
@@ -169,7 +170,7 @@ class ProfileEditActivity : AppCompatActivity() {
                 Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this@ProfileEditActivity, ProfileActivity::class.java))
             }
-            .addOnFailureListener {e ->
+            .addOnFailureListener { e ->
                 // failed to upload image
                 progressDialog.dismiss()
                 makeText(this, "Failed to upload image due to ${e.message}", LENGTH_SHORT).show()

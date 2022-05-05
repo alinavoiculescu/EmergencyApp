@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lifeSavers.emergencyappsignup.ChatActivity
 import com.lifeSavers.emergencyappsignup.R
-import com.lifeSavers.emergencyappsignup.model.User
 import com.lifeSavers.emergencyappsignup.databinding.ItemProfileBinding
+import com.lifeSavers.emergencyappsignup.model.User
 
-class UserAdapter(var context: Context, var usersList: ArrayList<User>): RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
-    inner class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class UserAdapter(var context: Context, var usersList: ArrayList<User>) :
+    RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+    inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding: ItemProfileBinding = ItemProfileBinding.bind(itemView)
     }
 

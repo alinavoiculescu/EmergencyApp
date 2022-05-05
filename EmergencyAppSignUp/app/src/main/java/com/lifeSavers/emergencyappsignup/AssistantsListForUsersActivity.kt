@@ -2,9 +2,9 @@ package com.lifeSavers.emergencyappsignup
 
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -41,23 +41,24 @@ class AssistantsListForUsersActivity : AppCompatActivity() {
         dialog = ProgressDialog(this@AssistantsListForUsersActivity)
         dialog!!.setMessage("Uploading image...")
         dialog!!.setCancelable(false)
-        database = FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
+        database =
+            FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
         users = ArrayList<User>()
         usersAdapter = UserAdapter(this@AssistantsListForUsersActivity, users!!)
         val layoutManager = GridLayoutManager(this@AssistantsListForUsersActivity, 2)
         binding!!.mRec.layoutManager = layoutManager
         database!!.reference.child("Users")
             .child(FirebaseAuth.getInstance().uid!!)
-            .addValueEventListener(object: ValueEventListener {
+            .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     user = snapshot.getValue(User::class.java)
                 }
 
-                override fun onCancelled(error: DatabaseError) { }
+                override fun onCancelled(error: DatabaseError) {}
 
             })
         binding!!.mRec.adapter = usersAdapter
-        database!!.reference.child("Users").addValueEventListener(object: ValueEventListener {
+        database!!.reference.child("Users").addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 users!!.clear()
@@ -71,7 +72,7 @@ class AssistantsListForUsersActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) { }
+            override fun onCancelled(error: DatabaseError) {}
 
         })
     }
