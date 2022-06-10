@@ -45,7 +45,18 @@
             android:exported="false" />
         <activity
             android:name=".LogInActivity"
-            android:exported="true">
+            android:exported="false" />
+
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PermissionsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".GuidePage1"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,11 +64,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUpActivity"
-            android:exported="false" />
+            android:name=".GuidePage2" />
         <activity
-            android:name=".PermissionsActivity"
-            android:exported="false" />
+            android:name=".GuidePage3"/>
     </application>
 
 </manifest>
