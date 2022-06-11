@@ -18,7 +18,9 @@
         android:padding="10dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="130dp"
-        android:textColor="@color/quantum_grey700" />
+        android:textColor="@color/white"
+        android:textStyle="bold"
+    />
 
     <Button
         android:id="@+id/profileBtn"

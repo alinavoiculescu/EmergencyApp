@@ -89,11 +89,14 @@
         <entry key="app/src/main/res/layout/content_map.xml" value="0.1307830810546875" />
         <entry key="app/src/main/res/layout/delete_layout.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/dialog_forgot_password.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/first_page_guide.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/item_profile.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/receive_msg.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/second_page_guide.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/send_msg.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/third_page_guide.xml" value="0.24583333333333332" />
       </map>
     </option>
   </component>

@@ -17,5 +17,10 @@ class GuidePage2 : AppCompatActivity() {
             val intent = Intent(this, GuidePage3::class.java)
             startActivity(intent)
         }
+
+        ThirdPageButtonSkip.setOnClickListener {
+            val intent = Intent(this, LogInActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
