@@ -55,7 +55,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         mapView = mapFragment.view
         mFusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(this@MapActivity)
-        Places.initialize(this@MapActivity, ("AIzaSyDBwNy08Ez4JnijhtfB8YH666veU-T-lTo"))
+        Places.initialize(this@MapActivity, ("AIzaSyCeq69MM3yEEQSaNTTrgFcyOlGsZVaXi6Q"))
         placesClient = Places.createClient(this)
         val token = AutocompleteSessionToken.newInstance()
         materialSearchBar.setOnSearchActionListener(object : OnSearchActionListener {
