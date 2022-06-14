@@ -11,7 +11,7 @@ class GuidePage2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.first_page_guide)
+        setContentView(R.layout.second_page_guide)
 
         ThirdPageButton.setOnClickListener {
             val intent = Intent(this, GuidePage3::class.java)
