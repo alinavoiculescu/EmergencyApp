@@ -21,7 +21,6 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
-import com.lifeSavers.emergencyappsignup.R
 
 class PermissionsActivity : AppCompatActivity() {
     lateinit var btnGrant: Button

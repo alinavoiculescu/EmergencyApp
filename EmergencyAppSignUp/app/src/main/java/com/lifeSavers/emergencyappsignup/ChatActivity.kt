@@ -108,7 +108,8 @@ class ChatActivity : AppCompatActivity() {
 
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-//        setSupportActionBar(binding!!.toolbar)
+        // setSupportActionBar(binding!!.toolbar)
+        supportActionBar?.title = "Chat"
         database =
             FirebaseDatabase.getInstance("https://emergencyapp-3a6bd-default-rtdb.europe-west1.firebasedatabase.app/")
         storage = FirebaseStorage.getInstance()

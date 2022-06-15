@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundimg_assistants"
     android:orientation="vertical"
-    tools:context=".AssistantsListForUsersActivity"
-    android:background="@drawable/backgroundimg_assistants">
+    tools:context=".AssistantsListForUsersActivity">
 
 
-<TextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Get help from our Life Savers"
         android:textAlignment="center"
-        android:layout_marginTop="20dp"
         android:textColor="@color/main_color"
         android:textSize="25sp"
         android:textStyle="normal|bold" />
@@ -22,31 +21,31 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
         android:text="Ask our assistants any question and get a solution for your problem"
         android:textAlignment="center"
-        android:layout_marginTop="1dp"
         android:textColor="@android:color/darker_gray"
         android:textSize="13sp"
         android:textStyle="bold|normal" />
 
     <View
-        android:background="@android:color/darker_gray"
         android:layout_width="match_parent"
-        android:layout_marginBottom="15dp"
+        android:layout_height="1dp"
         android:layout_marginTop="9dp"
-        android:layout_height="1dp"/>
+        android:layout_marginBottom="15dp"
+        android:background="@android:color/darker_gray" />
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_marginTop="6dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mRec"
-            tools:listitem="@layout/item_profile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_profile" />
     </LinearLayout>
 
 </LinearLayout>

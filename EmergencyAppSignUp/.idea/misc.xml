@@ -74,7 +74,9 @@
         <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/item_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/phone_number_item.xml" value="0.4" />
         <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/receive_msg.xml" value="0.22418478260869565" />
-        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/send_msg.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/second_page_guide.xml" value="0.1" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/send_msg.xml" value="0.1" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/third_page_guide.xml" value="0.33274021352313166" />
         <entry key="app/src/main/res/drawable/ic_location_pin_svgrepo_com.xml" value="0.217" />
         <entry key="app/src/main/res/layout/activity_assistants_list_for_users.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.246875" />
