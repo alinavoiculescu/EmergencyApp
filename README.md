@@ -55,10 +55,12 @@ By combining these various features, our app provides users with a comprehensive
 
 ## Demo of the app
 
-You can find our Demo [(here)](https://www.youtube.com/watch?v=kEvRWK-4Mks)
+You can find our Demo [(here)](https://vimeo.com/810608855#t=0)
 or by clicking on this photo:
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=kEvRWK-4Mks" target="_blank"><img src="http://img.youtube.com/vi/kEvRWK-4Mks/0.jpg" alt="Video - Traffic lights for a crosswalk" width="480" height="360" border="10"></a>
+<a href="https://vimeo.com/810608855#t=0" target="_blank">
+  <img src="https://i.vimeocdn.com/video/2091533625-34d7fd6fda395117183f0ebce684b0d1107d240a9e9f8714904d09314c5a3960-d_640?region=us" alt="Emergency App" width="164" height="364" border="10">
+</a>
 
 ## Technologies used
 
